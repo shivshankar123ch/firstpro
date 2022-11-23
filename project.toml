@@ -1,0 +1,30 @@
+[project]
+name = "titanic_ml"
+description = "titanic_ml example package"
+version = "0.1.0"
+authors = [
+    { name = "Niels Zeilemaker", email = "nielszeilemaker@godatadriven.com" }
+]
+dependencies = [
+    "pyspark[ml]",
+    "sklearn"
+]
+
+[project.optional-dependencies]
+dev = [
+    "tox",
+    "pre-commit",
+    "bump2version"
+]
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]
+I actually had quite some difficulties creating this file. This new pyproject.toml standard doesn’t really feel like a standard just yet. At least not as defined in PEP 621. But in the end, the file itself is quite similar to the setup.py file i shared above.
+
+Some observations, I cannot fetch the BUILD_BUILDID anymore, as this isn’t a Python. But bump2version is a workable workaround. Additionally, I really wanted to make use of pip, and editable installations, eg pip install -e .. Using flit and pip 21.3.1, that is now possible.
+
+Finally, python setup.py test is replaced by tox. That works, is a bit slower, but also much more feature rich (eg testing with different python versions).
+
+I hope this is usefull, and good luck converting from setup.py to pyproject.tomls.
+
